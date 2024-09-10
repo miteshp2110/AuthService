@@ -3,6 +3,8 @@ const app=express()
 const routes=require('./src/routes/authRoutes')
 const sequelize = require('./config/database/db')
 
+
+app.use(express.json())
 app.use('/',routes)
 
 sequelize.sync()
