@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-container
+    ports:
+      - "3306:3306"  # Host:Container port mapping
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Root password
+      MYSQL_DATABASE: auth               # Create a database on startup
+      MYSQL_USER: user                   # Create a user
+      MYSQL_PASSWORD: password           # User password
+    volumes:
+      - db_data:/var/lib/mysql           # Persist data in a named volume
+    networks:
+      - my-network
+
+volumes:
+  db_data:
+
+networks:
+  my-network:
+    driver: bridge
