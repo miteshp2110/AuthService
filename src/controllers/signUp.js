@@ -1,4 +1,5 @@
 const user =require('../models/userModel')
+const { createJwtToken } = require('../services/jwtService')
 const checkIfExistingEmail  = require('../utils/existingEmail')
 const {encrypt} = require('../utils/passwordManager')
 
@@ -16,13 +17,14 @@ const userSignUp=(async (req,res)=>{
                 password
     
             })
-            res.status(201).json(newUser)
+            
+            res.status(201).json(createJwtToken(email))
         }else{
-            res.status(501).json({error:"Email Already Exist"})
+            res.status(409).json({error:"Email Already Exist"})
         }
     }
     catch (err){
-        res.status(500).json({error: err.message})
+        res.status(400).json({error: err.message})
     }
     
 

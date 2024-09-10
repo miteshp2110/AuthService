@@ -13,15 +13,15 @@ async function checkIfExistingEmail(email){
         })
 
         if(existingUser){
-            return true
+            return existingUser
         }
         else{
-            return false
+            return null
         }
     }
     catch(err){
         console.log("error: "+err)
-        return false
+        return null
     }
 
 }
