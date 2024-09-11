@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  labels:
+    app: auth-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      containers:
+      - name: auth-service
+        image: mitesh2110/authimage:1.0.1
+        env:
+        - name: MYSQL_HOST
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: host
+        - name: MYSQL_DIALECT
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: dialect
+        - name: MYSQL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: dbport
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: dbuser
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: dbpassword
+        - name: MYSQL_DB
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: dbname
+        - name: JWT_SECERET
+          valueFrom:
+            secretKeyRef:
+              name: jwt-secret
+              key: jwtsecret
+
+        ports:
+        - containerPort: 3000
