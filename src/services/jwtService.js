@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
-const seceret='SampleSeceretKey'
+const env= require('dotenv')
+env.config()
+const seceret=process.env.JWT_SECERET
 
 function createJwtToken(email) {
     const token = jwt.sign({

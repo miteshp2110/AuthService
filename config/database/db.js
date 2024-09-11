@@ -1,14 +1,16 @@
-const e = require('express')
+const env= require('dotenv')
+
+env.config()
 const {Sequelize} = require('sequelize')
 
 const sequelize=new Sequelize(
-    'auth',
-    'root',
-    'root',
+    process.env.MYSQL_DB,
+    process.env.MYSQL_USER,
+    process.env.MYSQL_PASSWORD,
     {
-        host: 'localhost',
-        dialect: 'mysql',
-        port: 3306,
+        host: process.env.MYSQL_HOST,
+        dialect: process.env.MYSQL_DIALECT,
+        port: process.env.MYSQL_PORT,
         logging: false
     }
 )
