@@ -39,7 +39,7 @@ Fireup the database either in docker container or in local mysql server
 
 0.1 IN LOCAL SQL SERVER
 
-```bash
+```sql
 create database auth;
    
 use auth;
