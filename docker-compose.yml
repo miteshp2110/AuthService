@@ -12,6 +12,7 @@ services:
       MYSQL_PASSWORD: password           # User password
     volumes:
       - db_data:/var/lib/mysql           # Persist data in a named volume
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Mount your SQL file
     networks:
       - my-network
 
