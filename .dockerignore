@@ -5,3 +5,4 @@ logs
 .git
 Dockerfile
 docker-compose.yml
+manifest

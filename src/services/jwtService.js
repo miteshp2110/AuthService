@@ -9,6 +9,7 @@ function createJwtToken(email) {
     },
     seceret,
     {
+        algorithm: 'HS256',
         expiresIn: '24h'
     }
     )   
