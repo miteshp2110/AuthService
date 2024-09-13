@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: mitesh2110/authimage:2.0
+        image: mitesh2110/authimage:latest
         env:
         - name: MYSQL_HOST
           valueFrom:
