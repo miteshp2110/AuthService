@@ -5,7 +5,7 @@ metadata:
   labels:
     app: auth-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: auth-service
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: mitesh2110/authimage:1.0.1
+        image: mitesh2110/authimage:2.0
         env:
         - name: MYSQL_HOST
           valueFrom:

@@ -18,6 +18,7 @@ const userSignUp=(async (req,res)=>{
     
             })
             token=createJwtToken(email)
+            //console.log(token)
             res.status(201).json({"token":token})   
         }else{
             res.status(409).json({error:"Email Already Exist"})

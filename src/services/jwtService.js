@@ -1,18 +1,17 @@
 const jwt = require('jsonwebtoken')
 const env= require('dotenv')
 env.config()
-const seceret=process.env.JWT_SECERET
+const secretKey=process.env.JWT_SECERET
 
 function createJwtToken(email) {
-    const token = jwt.sign({
-        email: email
-    },
-    seceret,
-    {
-        algorithm: 'HS256',
-        expiresIn: '24h'
+
+    const payload= {
+        email:String(email)
     }
-    )   
+
+    const token = jwt.sign(payload, secretKey, { algorithm: 'HS256' ,expiresIn:'24h'});   
+
+    //console.log(token)
 
     return token
 
@@ -27,7 +26,7 @@ const authenticateToken=((req,res)=>{
     if(!token){
         return res.sendStatus(401)
     }
-    jwt.verify(token,seceret,(err,user)=>{
+    jwt.verify(token,secretKey,(err,user)=>{
         if(err){
             if(err.name=="TokenExpiredError"){
                 return res.status(403).json({"error":"TokenExpired"})
